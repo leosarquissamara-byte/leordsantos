@@ -2,19 +2,45 @@
 import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle, 
-  ChefHat, 
-  Diamond, 
-  ShieldCheck, 
   MessageCircle, 
-  Star, 
-  ArrowRight,
   Menu,
   X,
   Instagram,
-  Facebook
+  FileText,
+  MapPin,
+  Flame,
+  Palette,
+  Globe,
+  Sparkles,
+  Star,
+  Quote,
+  Truck,
+  CreditCard,
+  Building2,
+  Clock,
+  Download,
+  Award,
+  Info,
+  ShieldCheck,
+  ChevronRight
 } from 'lucide-react';
 
-// --- Components ---
+const IMAGES = {
+  hero: "https://i.postimg.cc/RNYntL1r/0744ee7c-e63b-4787-9bee-c9b11b28a852-3.jpg",
+  main_secondary: "https://i.postimg.cc/2VtBW7df/cdacb943-b744-4070-93c2-1a2f0737de11.jpg",
+  buffet_cat_preview: "https://i.postimg.cc/9zLSP6wX/IMG-6133.jpg",
+  decor_cat_preview: "https://i.postimg.cc/yWL5hMg2/IMG-6312.jpg",
+  gallery: [
+    "https://i.postimg.cc/XZnczvTv/IMG-3525.jpg",
+    "https://i.postimg.cc/8jWRkWS3/IMG-4838.jpg",
+    "https://i.postimg.cc/XGRLN620/3f3d677b-398b-4f80-9ea1-8309885cb3c9.jpg",
+    "https://i.postimg.cc/r0Bjy2f3/6feda6cc-cab8-4fc4-be81-8af6ebeb5a8f.jpg"
+  ]
+};
+
+const WHATSAPP_LINK = "https://wa.me/5543999641763?text=Olá! Desejo solicitar um orçamento exclusivo para o Catálogo 2026. Seguem os dados da minha empresa para análise.";
+const CATALOGO_BUFFET = "https://bit.ly/3R67nG0";
+const CATALOGO_DECORACAO = "https://bit.ly/41Nbtrs";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,32 +53,36 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-luxury-dark/95 backdrop-blur-md py-3 shadow-2xl' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${isScrolled ? 'bg-luxury-dark/95 backdrop-blur-xl py-4 shadow-2xl' : 'bg-transparent py-8'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div className="text-white font-extrabold text-lg md:text-xl lg:text-2xl tracking-tighter uppercase">
-          Sarquis Samara <span className="text-luxury-gold font-light italic lowercase">Home</span>
+        <div className="flex flex-col">
+          <span className="text-white font-serif italic text-2xl md:text-3xl leading-none tracking-tight">Sarquis Samara</span>
+          <span className="text-luxury-gold text-[9px] font-bold tracking-[0.5em] uppercase mt-1">B2B • Editorial de Luxo</span>
         </div>
         
-        <div className="hidden lg:flex items-center space-x-8 text-white/90 text-[11px] font-bold uppercase tracking-[0.2em]">
-          <a href="#beneficios" className="hover:text-luxury-gold transition-colors">Benefícios</a>
-          <a href="#artesanal" className="hover:text-luxury-gold transition-colors">O Processo</a>
-          <a href="#depoimentos" className="hover:text-luxury-gold transition-colors">Clientes</a>
-          <button className="bg-luxury-gold text-luxury-dark px-6 py-2 rounded-sm font-extrabold hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
-            CATÁLOGO <ArrowRight size={14} />
-          </button>
+        <div className="hidden lg:flex items-center space-x-12 text-white/70 text-[10px] font-bold uppercase tracking-[0.25em]">
+          <a href="#catalogos" className="hover:text-luxury-gold transition-all">Catálogos 2026</a>
+          <a href="#comercial" className="hover:text-luxury-gold transition-all">Diretrizes</a>
+          <a href="#historia" className="hover:text-luxury-gold transition-all">O Artista</a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="border border-luxury-gold/50 text-luxury-gold px-8 py-3 hover:bg-luxury-gold hover:text-black transition-all flex items-center gap-3">
+            CONSULTORIA EXCLUSIVA
+          </a>
         </div>
 
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-white p-2">
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-white">
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-luxury-dark border-t border-white/5 p-8 flex flex-col space-y-6 text-white uppercase font-bold tracking-widest text-sm animate-in slide-in-from-top duration-300">
-          <a href="#beneficios" onClick={() => setIsMenuOpen(false)}>Benefícios</a>
-          <a href="#artesanal" onClick={() => setIsMenuOpen(false)}>O Processo</a>
-          <a href="#depoimentos" onClick={() => setIsMenuOpen(false)}>Clientes</a>
-          <button className="bg-luxury-gold text-luxury-dark px-6 py-4 rounded-sm font-black text-center">FALAR NO WHATSAPP</button>
+        <div className="lg:hidden fixed inset-0 bg-luxury-dark z-50 flex flex-col p-12 space-y-8 text-white uppercase font-bold tracking-widest text-sm animate-in slide-in-from-right duration-500">
+           <div className="flex justify-end mb-12">
+              <button onClick={() => setIsMenuOpen(false)}><X size={32} /></button>
+           </div>
+          <a href="#catalogos" onClick={() => setIsMenuOpen(false)}>Catálogos 2026</a>
+          <a href="#comercial" onClick={() => setIsMenuOpen(false)}>Política B2B</a>
+          <a href="#historia" onClick={() => setIsMenuOpen(false)}>Legado</a>
+          <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-luxury-gold border-b border-luxury-gold pb-2 w-fit">WhatsApp Comercial</a>
         </div>
       )}
     </nav>
@@ -61,252 +91,110 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center gradient-texture text-white overflow-hidden pt-20">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-luxury-gold/10 to-transparent pointer-events-none opacity-50"></div>
+    <section className="relative min-h-screen flex items-center bg-luxury-dark overflow-hidden">
+      <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full">
+        <div className="relative w-full h-full overflow-hidden">
+          <img src={IMAGES.hero} className="w-full h-full object-cover animate-slow-zoom opacity-70 lg:opacity-100" alt="L'arte di Servire" />
+          <div className="absolute inset-0 bg-gradient-to-r from-luxury-dark lg:via-luxury-dark/40 to-transparent"></div>
+        </div>
+      </div>
       
-      <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        <div className="space-y-10 animate-in fade-in slide-in-from-left duration-1000">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-luxury-gold/30 rounded-full text-luxury-gold text-[10px] font-bold tracking-[0.3em] uppercase">
-            <span className="w-2 h-2 rounded-full bg-luxury-gold animate-pulse"></span>
-            Curadoria & Sofisticação
-          </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight">
-            A Arte de Servir com a <span className="text-luxury-gold block mt-2">Sofisticação Eterna.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-300 font-light max-w-xl leading-relaxed">
-            Travessas exclusivas <strong>Sarquis Samara Home</strong>. Peças em alumínio fundido confeccionadas artesanalmente para quem busca o extraordinário em cada detalhe.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5">
-            <button className="bg-luxury-gold text-luxury-dark px-10 py-5 rounded-sm font-extrabold text-sm uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 shadow-2xl shadow-luxury-gold/20 flex items-center justify-center gap-3">
-              Quero Garantir Minha Coleção <ArrowRight size={18} />
-            </button>
-            <button className="bg-transparent border border-white/20 px-10 py-5 rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-white/5 transition-all flex items-center justify-center gap-2">
-              <MessageCircle className="text-green-500" size={18} /> Atendimento VIP
-            </button>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-gray-400 font-semibold tracking-wide">
-            <div className="flex -space-x-3">
-              {[1, 2, 3, 4].map(i => (
-                <img key={i} className="w-10 h-10 rounded-full border-2 border-luxury-dark object-cover" src={`https://picsum.photos/seed/${i+100}/100/100`} alt="User" />
-              ))}
-            </div>
-            <span>+2.400 Buffets de luxo confiam na nossa marca</span>
-          </div>
-        </div>
-        
-        <div className="relative animate-in zoom-in duration-1000 delay-200">
-          <div className="rounded-sm overflow-hidden shadow-3xl border border-white/5 group">
-            <img 
-              src="https://picsum.photos/seed/sarquis/1000/1200" 
-              alt="Travessa Sarquis Samara Home" 
-              className="w-full h-auto object-cover transform transition-transform duration-1000 group-hover:scale-105"
-            />
-          </div>
-          <div className="absolute -bottom-8 -left-8 bg-luxury-gold text-luxury-dark p-8 rounded-sm shadow-3xl hidden xl:block">
-            <p className="text-5xl font-black leading-none">100%</p>
-            <p className="text-[10px] uppercase font-extrabold tracking-[0.2em] mt-2">Artesanal & Vitalício</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Benefits = () => {
-  const items = [
-    {
-      icon: <ChefHat className="text-luxury-gold" size={42} />,
-      title: "Padrão Alta Gastronomia",
-      desc: "Performance profissional para suportar o fluxo intenso de eventos, mantendo a temperatura ideal dos alimentos por mais tempo."
-    },
-    {
-      icon: <Diamond className="text-luxury-gold" size={42} />,
-      title: "Exclusividade Sarquis",
-      desc: "Design único que carrega nossa assinatura. O acabamento manual garante que nenhuma peça seja idêntica a outra."
-    },
-    {
-      icon: <ShieldCheck className="text-luxury-gold" size={42} />,
-      title: "Durabilidade Perene",
-      desc: "O alumínio fundido maciço não deforma, não oxida e atravessa gerações. O investimento definitivo para seu acervo."
-    }
-  ];
-
-  return (
-    <section id="beneficios" className="py-32 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
-          <h2 className="text-[11px] font-black text-luxury-gold uppercase tracking-[0.5em]">O Diferencial Home</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-luxury-dark leading-tight tracking-tight">
-            Onde a robustez do metal encontra a delicadeza do design.
-          </h3>
-          <p className="text-gray-500 font-light text-xl leading-relaxed">
-            Nossas travessas elevam a apresentação gastronômica ao nível de arte.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-16">
-          {items.map((item, idx) => (
-            <div key={idx} className="group flex flex-col items-center text-center space-y-8">
-              <div className="p-6 bg-luxury-gray rounded-full transform transition-transform group-hover:scale-110 duration-500">
-                {item.icon}
-              </div>
-              <h4 className="text-2xl font-extrabold text-luxury-dark">{item.title}</h4>
-              <p className="text-gray-600 leading-relaxed font-light text-lg">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const ArtisanSection = () => {
-  return (
-    <section id="artesanal" className="py-32 light-texture relative overflow-hidden border-y border-gray-100">
-      <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-20">
-        <div className="lg:w-1/2 order-2 lg:order-1 relative">
-          <div className="grid grid-cols-2 gap-6">
-            <img src="https://picsum.photos/seed/art1/500/700" className="rounded-sm shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-700" alt="Produção 1" />
-            <img src="https://picsum.photos/seed/art2/500/700" className="rounded-sm shadow-2xl mt-16 transform rotate-2 hover:rotate-0 transition-transform duration-700" alt="Produção 2" />
-          </div>
-        </div>
-        
-        <div className="lg:w-1/2 order-1 lg:order-2 space-y-10">
-          <h2 className="text-[11px] font-black text-luxury-gold uppercase tracking-[0.5em]">Processo Ancestral</h2>
-          <h3 className="text-4xl md:text-6xl font-extrabold text-luxury-dark leading-[1.1] tracking-tighter">
-            Feito à Mão, Com a Alma do Mestre.
-          </h3>
-          <p className="text-gray-600 text-xl font-light leading-relaxed">
-            Na <strong>Sarquis Samara Home</strong>, a fundição em areia é um ritual. Cada travessa nasce de um molde único, garantindo texturas orgânicas que as máquinas jamais conseguirão replicar.
-          </p>
-          <ul className="space-y-6">
-            {[
-              "Alumínio com liga de pureza premium",
-              "Resistência térmica excepcional",
-              "Acabamento luxuoso polido manualmente",
-              "Peças com valorização patrimonial"
-            ].map((text, i) => (
-              <li key={i} className="flex items-center gap-4 font-bold text-luxury-dark uppercase text-[11px] tracking-[0.2em]">
-                <CheckCircle className="text-luxury-gold" size={22} /> {text}
-              </li>
-            ))}
-          </ul>
-          <button className="bg-luxury-dark text-white px-12 py-6 rounded-sm font-black uppercase tracking-widest text-xs hover:bg-luxury-gold hover:text-luxury-dark transition-all flex items-center gap-4">
-            CONHECER A COLEÇÃO <ArrowRight size={20} />
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const SocialProof = () => {
-  const testimonials = [
-    {
-      name: "Roberta Albuquerque",
-      role: "Buffet Gourmet Elite",
-      text: "As travessas da Sarquis Samara Home mudaram o patamar visual dos meus eventos. A retenção de calor é impecável e o glamour é absoluto.",
-      img: "https://picsum.photos/seed/face1/100/100"
-    },
-    {
-      name: "Chef André Martins",
-      role: "Restaurateur",
-      text: "Equipamento de performance rara. O alumínio fundido é robusto e elegante ao mesmo tempo. Não há nada igual no mercado nacional.",
-      img: "https://picsum.photos/seed/face2/100/100"
-    },
-    {
-      name: "Juliana Mendes",
-      role: "Designer de Interiores",
-      text: "Peças que são verdadeiras esculturas. Utilizo na decoração de cozinhas de luxo para trazer uma presença rústica e sofisticada.",
-      img: "https://picsum.photos/seed/face3/100/100"
-    }
-  ];
-
-  return (
-    <section id="depoimentos" className="py-32 bg-luxury-dark text-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-24 space-y-6">
-          <h2 className="text-[11px] font-black text-luxury-gold uppercase tracking-[0.5em]">Experiências Reais</h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight">Reconhecimento de quem domina o mercado</h3>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-10">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-white/5 p-10 rounded-sm border border-white/10 flex flex-col justify-between group hover:bg-white/10 transition-all duration-500">
-              <div className="mb-8">
-                <div className="flex gap-1 mb-6">
-                  {[1, 2, 3, 4, 5].map(i => <Star key={i} size={18} fill="#D4AF37" color="#D4AF37" />)}
-                </div>
-                <p className="text-gray-400 italic font-light text-lg leading-relaxed">"{t.text}"</p>
-              </div>
-              <div className="flex items-center gap-5">
-                <img src={t.img} className="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500" alt={t.name} />
-                <div>
-                  <h5 className="font-bold text-luxury-gold text-sm tracking-wide">{t.name}</h5>
-                  <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-32 pt-20 border-t border-white/5 grid grid-cols-2 lg:grid-cols-4 gap-12 opacity-30 grayscale hover:grayscale-0 transition-all duration-1000">
-          {['FORBES', 'VOGUE CASA', 'ARCHITECTURAL DIGEST', 'CASA COR'].map((brand, i) => (
-            <div key={i} className="flex items-center justify-center font-black text-2xl tracking-tighter italic">{brand}</div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Pricing = () => {
-  return (
-    <section className="py-32 bg-white relative">
-      <div className="container mx-auto px-6">
-        <div className="bg-luxury-gray rounded-sm overflow-hidden flex flex-col lg:flex-row items-stretch border border-gray-100 shadow-2xl">
-          <div className="lg:w-1/2 bg-luxury-dark p-12 lg:p-24 text-white flex flex-col justify-center space-y-10">
-            <h2 className="text-luxury-gold font-black tracking-[0.4em] uppercase text-[11px]">Oportunidade de Acervo</h2>
-            <h3 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tighter">Um Legado para sua Mesa Posta.</h3>
-            <p className="text-gray-400 text-xl font-light leading-relaxed">
-              Adquira peças que não apenas servem, mas que valorizam seu patrimônio e encantam gerações.
-            </p>
-            <div className="space-y-6">
-              {[
-                "Logística Segurada Full",
-                "Certificado de Autenticidade Sarquis",
-                "Garantia de Satisfação Platinum"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em]">
-                  <CheckCircle className="text-luxury-gold" size={20} /> {item}
-                </div>
-              ))}
-            </div>
+      <div className="container mx-auto px-6 relative z-10 grid lg:grid-cols-2">
+        <div className="max-w-2xl space-y-12 py-20 lg:py-0">
+          <div className="space-y-4">
+            <p className="text-luxury-gold font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs">Curadoria Internacional • Manufatura Brasileira</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[1.1] text-white">
+              A Nova Era <br/>
+              <span className="italic text-luxury-gold">do Servir 2026.</span>
+            </h1>
           </div>
           
-          <div className="lg:w-1/2 p-12 lg:p-24 flex flex-col justify-center space-y-12">
-            <div>
-              <p className="text-gray-400 line-through text-2xl font-light mb-2">R$ 1.290,00</p>
-              <div className="flex items-end gap-3">
-                <span className="text-luxury-dark text-7xl font-black tracking-tighter">R$ 897</span>
-                <span className="text-luxury-gold text-3xl font-bold mb-3">,90</span>
-              </div>
-              <p className="text-gray-500 text-sm mt-4 font-bold uppercase tracking-widest">ou 12x de R$ 89,70 no cartão</p>
-            </div>
-            
-            <div className="space-y-6">
-              <button className="w-full bg-luxury-gold text-luxury-dark py-8 rounded-sm font-black text-xl uppercase tracking-widest hover:bg-luxury-dark hover:text-white transition-all duration-500 shadow-3xl shadow-luxury-gold/20 transform hover:-translate-y-1">
-                ADQUIRIR MINHA COLEÇÃO
-              </button>
-              <p className="text-center text-red-600 text-[10px] font-black uppercase tracking-[0.3em] animate-pulse">
-                ⚠️ Apenas 8 kits restantes neste lote artesanal
-              </p>
-            </div>
+          <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+            Peças assinadas que transcendem o utilitário. Uma fusão magistral entre a herança plástica e a durabilidade do alumínio premium para Buffets e Boutiques de luxo.
+          </p>
 
-            <div className="flex items-center justify-center gap-10 border-t border-gray-200 pt-10 opacity-40">
-              <img src="https://logodownload.org/wp-content/uploads/2020/02/pix-logo.png" className="h-6" alt="Pix" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" className="h-6" alt="Visa" />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" className="h-8" alt="Mastercard" />
+          <div className="flex flex-col sm:flex-row gap-8 pt-6">
+            <a href="#catalogos" className="bg-luxury-gold text-black px-12 py-6 font-bold text-xs uppercase tracking-[0.25em] hover:bg-white transition-all transform hover:-translate-y-1 shadow-2xl shadow-luxury-gold/20 flex items-center justify-center gap-4">
+              Explorar Catálogo 2026 <ChevronRight size={16} />
+            </a>
+            <div className="flex flex-col justify-center">
+              <span className="text-white/40 text-[9px] uppercase font-bold tracking-widest mb-1">Status Atendimento</span>
+              <span className="text-luxury-gold text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-luxury-gold animate-pulse"></span>
+                Suporte B2B Online
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-10 left-6 hidden lg:block">
+        <div className="flex flex-col text-[10px] text-white/20 font-bold uppercase tracking-[0.6em] space-y-2">
+           <span>Design Autoral</span>
+           <span>Condução Térmica Superior</span>
+           <span>Exclusivo para Profissionais</span>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CatalogSection = () => {
+  return (
+    <section id="catalogos" className="py-32 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-8">
+          <div className="space-y-4">
+            <span className="text-luxury-gold font-bold uppercase tracking-luxury text-[10px]">Preview Coleções</span>
+            <h2 className="text-5xl md:text-6xl font-serif leading-none">Catálogos 2026</h2>
+          </div>
+          <p className="text-luxury-muted max-w-md font-light">Diferenciamos nossa manufatura nacional sob demanda da curadoria internacional pronta-entrega para otimizar sua operação.</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+          {/* Card Buffet */}
+          <div className="group space-y-10">
+            <div className="aspect-[4/5] overflow-hidden bg-luxury-accent relative">
+               <img src={IMAGES.buffet_cat_preview} className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="Buffet Art 2026" />
+               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+               <div className="absolute bottom-0 left-0 p-8">
+                  <span className="bg-white text-black text-[9px] font-bold px-4 py-2 uppercase tracking-widest">Manufatura sob Encomenda</span>
+               </div>
+            </div>
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-4xl font-serif">Buffet & Chef 2026</h3>
+                <span className="text-luxury-gold font-bold text-[10px] tracking-widest">90 A 120 DIAS</span>
+              </div>
+              <p className="text-luxury-muted font-light leading-relaxed">
+                A excelência do alumínio premium para o mercado de eventos. Resistência absoluta ao calor e design que assina o serviço. Peças forjadas individualmente.
+              </p>
+              <a href={CATALOGO_BUFFET} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-black font-bold text-[11px] uppercase tracking-[0.3em] group-hover:text-luxury-gold transition-colors border-b border-transparent hover:border-luxury-gold pb-1">
+                Acessar Buffet 2026 <ChevronRight size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Card Decoração */}
+          <div className="group space-y-10 md:mt-24">
+            <div className="aspect-[4/5] overflow-hidden bg-luxury-accent relative">
+               <img src={IMAGES.decor_cat_preview} className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110" alt="Decor Art 2026" />
+               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+               <div className="absolute bottom-0 left-0 p-8">
+                  <span className="bg-luxury-gold text-black text-[9px] font-bold px-4 py-2 uppercase tracking-widest">Disponibilidade Imediata</span>
+               </div>
+            </div>
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-4xl font-serif">Home Décor 2026</h3>
+                <span className="text-luxury-gold font-bold text-[10px] tracking-widest">PRONTA-ENTREGA</span>
+              </div>
+              <p className="text-luxury-muted font-light leading-relaxed">
+                Curadoria seleta de objetos de arte e decoração importados. Peças que transformam ambientes e agregam valor imediato ao seu showroom.
+              </p>
+              <a href={CATALOGO_DECORACAO} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-4 text-black font-bold text-[11px] uppercase tracking-[0.3em] group-hover:text-luxury-gold transition-colors border-b border-transparent hover:border-luxury-gold pb-1">
+                Acessar Décor 2026 <ChevronRight size={18} />
+              </a>
             </div>
           </div>
         </div>
@@ -315,39 +203,135 @@ const Pricing = () => {
   );
 };
 
-const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const questions = [
-    { q: "As travessas perdem o brilho?", a: "Nossas peças são fundidas com uma liga especial de alta pureza. Com limpeza básica (detergente neutro), elas mantêm o brilho acetinado característico por décadas." },
-    { q: "Posso utilizar em buffets quentes?", a: "Sim. O alumínio fundido é um dos melhores condutores térmicos. Elas conservam o calor por muito mais tempo que a cerâmica ou o vidro." },
-    { q: "Qual o diferencial da Sarquis Samara?", a: "Diferente de peças industriais finas, nossas travessas são maciças e artesanais. O peso e a textura transmitem imediatamente uma percepção de luxo e autoridade." },
-    { q: "Como funciona a garantia vitalícia?", a: "Garantimos que sua travessa nunca irá rachar ou deformar sob condições normais de uso. É um produto feito para ser eterno." }
+const Testimonials = () => {
+  const reviews = [
+    { name: "Alessandra V.", loc: "Rio de Janeiro, RJ", role: "Eventos Boutique", text: "O brilho das peças Sarquis Samara é o diferencial que nossos clientes premium exigem. É um investimento vitalício em estética e funcionalidade." },
+    { name: "Henrique M.", loc: "Belo Horizonte, MG", role: "Distribuidor Décor", text: "Trabalhamos com o catálogo de decoração há anos. A curadoria é sempre à frente do mercado, com um giro excelente no B2B." },
+    { name: "Carla S.", loc: "Balneário Camboriú, SC", role: "Lojista de Luxo", text: "Peças que são o ponto focal de qualquer vitrine. O suporte comercial para nós lojistas é eficiente e extremamente profissional." }
   ];
 
   return (
-    <section className="py-32 bg-luxury-gray">
-      <div className="container mx-auto px-6 max-w-4xl">
-        <h3 className="text-4xl font-extrabold text-center mb-20 text-luxury-dark tracking-tight">Perguntas Frequentes</h3>
-        <div className="space-y-6">
-          {questions.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-sm overflow-hidden border border-gray-200 shadow-sm">
-              <button 
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full p-8 text-left flex justify-between items-center font-bold text-luxury-dark hover:bg-gray-50 transition-colors"
-              >
-                <span className="text-lg tracking-tight">{item.q}</span>
-                <span className={`transform transition-transform duration-500 ${openIndex === idx ? 'rotate-180' : ''}`}>
-                  <ArrowRight size={20} className="rotate-90" />
-                </span>
-              </button>
-              <div className={`transition-all duration-500 ease-in-out overflow-hidden ${openIndex === idx ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="p-8 pt-0 text-gray-600 font-light text-lg leading-relaxed border-t border-gray-50">
-                  {item.a}
+    <section className="py-32 bg-luxury-dark text-white overflow-hidden relative">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-24 space-y-4">
+          <span className="text-luxury-gold font-bold uppercase tracking-[0.5em] text-[10px]">Reconhecimento B2B</span>
+          <h2 className="text-5xl font-serif italic">A Confiança de Grandes Parceiros</h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-12">
+          {reviews.map((r, i) => (
+            <div key={i} className="glass-card p-12 space-y-8 hover:border-luxury-gold/30 transition-all duration-700 group">
+              <Quote className="text-luxury-gold/20 group-hover:text-luxury-gold/40 transition-colors" size={40} />
+              <p className="text-gray-300 font-light italic leading-relaxed text-lg">"{r.text}"</p>
+              <div className="pt-8 border-t border-white/5">
+                <p className="font-serif text-xl">{r.name}</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-[10px] font-bold text-luxury-gold uppercase tracking-widest">{r.role}</span>
+                  <span className="text-[9px] text-white/20 uppercase font-bold tracking-widest">{r.loc}</span>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CommercialPolicy = () => {
+  return (
+    <section id="comercial" className="py-32 bg-white relative">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto glass-card bg-luxury-accent/5 rounded-none border-y border-luxury-gold/20 p-12 lg:p-24 grid lg:grid-cols-2 gap-24">
+          <div className="space-y-12">
+            <div className="space-y-6">
+              <span className="text-luxury-gold font-bold uppercase tracking-luxury text-[10px]">Acordos Comerciais</span>
+              <h2 className="text-5xl font-serif leading-none">Diretrizes de Parceria</h2>
+              <p className="text-luxury-muted font-light leading-relaxed">Estrutura comercial desenhada para parcerias de longo prazo com Buffets e Lojistas de alta performance.</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-10">
+              <div className="space-y-2">
+                <Building2 className="text-luxury-gold mb-2" size={24} />
+                <h4 className="font-bold uppercase tracking-widest text-xs">Exclusivo B2B</h4>
+                <p className="text-[11px] text-luxury-muted font-light leading-relaxed">Faturamento exclusivo para CNPJ com Inscrição Estadual ativa.</p>
+              </div>
+              <div className="space-y-2">
+                <Award className="text-luxury-gold mb-2" size={24} />
+                <h4 className="font-bold uppercase tracking-widest text-xs">Aporte Mínimo</h4>
+                <p className="text-[11px] text-luxury-muted font-light leading-relaxed">Pedido mínimo inicial de R$ 1.500,00 para condições de atacado.</p>
+              </div>
+              <div className="space-y-2">
+                <Truck className="text-luxury-gold mb-2" size={24} />
+                <h4 className="font-bold uppercase tracking-widest text-xs">Despacho FOB</h4>
+                <p className="text-[11px] text-luxury-muted font-light leading-relaxed">Frete FOB (Londrina-PR). Escolha sua transportadora de confiança.</p>
+              </div>
+              <div className="space-y-2">
+                <Clock className="text-luxury-gold mb-2" size={24} />
+                <h4 className="font-bold uppercase tracking-widest text-xs">Cronograma 2026</h4>
+                <p className="text-[11px] text-luxury-muted font-light leading-relaxed">Produção Buffet: 90 a 120 dias. Peças Décor: Disponibilidade imediata.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-luxury-dark text-white p-12 flex flex-col justify-center space-y-10 relative overflow-hidden group border border-luxury-gold/20">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-luxury-gold opacity-5 blur-3xl group-hover:opacity-20 transition-all"></div>
+            <div className="space-y-4 relative z-10">
+               <h4 className="text-3xl font-serif italic text-luxury-gold">Solicitar Orçamento 2026</h4>
+               <p className="text-gray-400 font-light text-sm leading-relaxed">
+                 O próximo passo para elevar o padrão do seu acervo ou boutique começa com uma conversa técnica.
+               </p>
+            </div>
+            <div className="space-y-4 relative z-10">
+               <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white/60">
+                  <CheckCircle size={16} className="text-luxury-gold" /> Dados Jurídicos Completos
+               </div>
+               <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-white/60">
+                  <CheckCircle size={16} className="text-luxury-gold" /> Identificação IE (PJ)
+               </div>
+            </div>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-full bg-luxury-gold text-black py-6 font-bold text-xs uppercase tracking-[0.3em] hover:bg-white transition-all text-center shadow-lg shadow-luxury-gold/10">
+              Solicitar Tabela Comercial
+            </a>
+            <p className="text-center text-[9px] text-gray-600 font-bold uppercase tracking-[0.4em] relative z-10 italic">Aprovação cadastral sujeita à análise</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HistorySection = () => {
+  return (
+    <section id="historia" className="py-32 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-20 items-center">
+          <div className="lg:col-span-5 space-y-10">
+            <div className="space-y-6">
+              <span className="text-luxury-gold font-bold uppercase tracking-luxury text-[10px]">Gênese Criativa</span>
+              <h2 className="text-5xl md:text-7xl font-serif italic leading-none">A Essência <br/>Sarquis Samara.</h2>
+              <p className="text-luxury-muted text-xl font-light leading-relaxed">
+                Mais de três décadas transformando o alumínio bruto em objetos de desejo. Do aprendizado plástico na Europa à industrialização artesanal no sul do Brasil, cada peça é uma declaração de longevidade.
+              </p>
+            </div>
+            <div className="border-l-2 border-luxury-gold pl-12 py-4 italic text-luxury-accent font-serif text-2xl">
+              "Buscamos a forma perfeita que honra o alimento e abraça o ambiente."
+            </div>
+          </div>
+          <div className="lg:col-span-7 relative">
+             <div className="grid grid-cols-2 gap-4">
+                <img src={IMAGES.main_secondary} className="w-full h-full object-cover shadow-3xl transform hover:scale-[1.02] transition-transform duration-700" alt="Legado" />
+                <div className="grid grid-rows-2 gap-4">
+                  <img src={IMAGES.gallery[0]} className="w-full h-full object-cover shadow-3xl transform hover:scale-[1.02] transition-transform duration-700" alt="Buffet" />
+                  <img src={IMAGES.gallery[1]} className="w-full h-full object-cover shadow-3xl transform hover:scale-[1.02] transition-transform duration-700" alt="Art" />
+                </div>
+             </div>
+             <div className="absolute -bottom-10 -right-10 bg-luxury-dark p-12 text-white hidden md:block border-t border-luxury-gold">
+                <Globe className="text-luxury-gold mb-6" size={40} />
+                <p className="font-serif italic text-2xl">Presença Global</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-luxury-gold mt-2">Londres • Milão • Tóquio</p>
+             </div>
+          </div>
         </div>
       </div>
     </section>
@@ -356,46 +340,47 @@ const FAQ = () => {
 
 const Footer = () => {
   return (
-    <footer className="bg-luxury-dark text-white pt-32 pb-12">
+    <footer className="bg-luxury-dark text-white pt-32 pb-12 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-4 gap-20 mb-32">
-          <div className="col-span-1 lg:col-span-2 space-y-10">
-            <div className="font-extrabold text-3xl tracking-tighter uppercase">
-              Sarquis Samara <span className="text-luxury-gold font-light italic lowercase">Home</span>
+        <div className="grid lg:grid-cols-4 gap-24 mb-32 border-b border-white/5 pb-24">
+          <div className="col-span-1 lg:col-span-2 space-y-12">
+            <div className="flex flex-col">
+              <span className="font-serif italic text-4xl">Sarquis Samara</span>
+              <span className="text-luxury-gold text-[10px] font-bold tracking-[0.5em] uppercase mt-2">Excelência Editorial em Alumínio Premium</span>
             </div>
-            <p className="text-gray-500 max-w-sm font-light text-lg leading-relaxed">
-              Redefinindo a excelência no servir através da fundição artesanal e design de alto padrão para buffets e residências de elite.
+            <p className="text-gray-500 max-w-sm font-light leading-relaxed">
+              Consolidando o luxo brasileiro através de objetos de arte para o setor de hospitalidade e decoração.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-luxury-gold hover:text-luxury-dark transition-all"><Instagram size={24} /></a>
-              <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-luxury-gold hover:text-luxury-dark transition-all"><Facebook size={24} /></a>
+              <a href="https://www.instagram.com/sarquissamarahome/" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-luxury-gold transition-colors transform hover:scale-110"><Instagram size={28} /></a>
             </div>
           </div>
           
-          <div className="space-y-8">
-            <h5 className="font-black uppercase tracking-[0.3em] text-luxury-gold text-[10px]">Institucional</h5>
-            <ul className="space-y-4 text-gray-500 text-sm font-bold uppercase tracking-widest">
-              <li><a href="#" className="hover:text-white transition-colors">Nossa História</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Curadoria</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Catálogo Digital</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contato</a></li>
-            </ul>
+          <div className="space-y-10">
+            <h5 className="font-bold uppercase tracking-[0.5em] text-luxury-gold text-[10px]">Showroom & Fábrica</h5>
+            <div className="flex gap-4 group">
+                <MapPin className="text-luxury-gold flex-shrink-0" size={24} />
+                <address className="not-italic text-gray-500 font-bold uppercase text-[11px] leading-relaxed tracking-widest group-hover:text-white transition-colors">
+                    Rua João-de-Barro, 215<br/>
+                    Pq das Indústrias Leves<br/>
+                    Londrina - PR
+                </address>
+            </div>
           </div>
 
-          <div className="space-y-8">
-            <h5 className="font-black uppercase tracking-[0.3em] text-luxury-gold text-[10px]">Atendimento</h5>
-            <p className="text-gray-500 text-sm font-medium leading-relaxed uppercase tracking-widest">Showroom Digital<br/>Disponível Seg-Sex</p>
-            <a href="https://wa.me/5511999999999" className="text-white font-black text-xl flex items-center gap-3 hover:text-luxury-gold transition-colors">
-              <MessageCircle size={24} className="text-green-500" /> (11) 99999-9999
+          <div className="space-y-10">
+            <h5 className="font-bold uppercase tracking-[0.5em] text-luxury-gold text-[10px]">Contato Corporativo</h5>
+            <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-white font-serif italic text-2xl hover:text-luxury-gold transition-all block">
+              (43) 99964-1763
             </a>
           </div>
         </div>
         
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] text-gray-600 font-black uppercase tracking-[0.3em]">
-          <p>© 2024 Sarquis Samara Home. Todos os direitos reservados.</p>
-          <div className="flex gap-10">
-            <a href="#" className="hover:text-white transition-colors">Privacidade</a>
-            <a href="#" className="hover:text-white transition-colors">Termos</a>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-10 text-[9px] text-gray-600 font-bold uppercase tracking-[0.5em]">
+          <p>© 2026 Sarquis Samara. Todos os direitos reservados.</p>
+          <div className="flex gap-12">
+            <a href="#" className="hover:text-white transition-colors">Política Comercial</a>
+            <a href="#" className="hover:text-white transition-colors">Termos B2B</a>
           </div>
         </div>
       </div>
@@ -413,40 +398,40 @@ const StickyCTA = () => {
   }, []);
 
   return (
-    <div className={`fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-lg p-5 border-t border-gray-200 z-[60] transition-all duration-700 shadow-3xl lg:hidden ${visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
-      <button className="w-full bg-luxury-gold text-luxury-dark py-5 rounded-sm font-black text-lg uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 transition-transform">
-        ADQUIRIR AGORA <ArrowRight size={20} />
-      </button>
+    <div className={`fixed bottom-0 left-0 w-full bg-luxury-dark/95 backdrop-blur-xl p-5 border-t border-luxury-gold/30 z-[60] transition-all duration-700 lg:hidden ${visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+      <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="w-full bg-luxury-gold text-black py-5 font-bold text-xs uppercase tracking-[0.3em] flex items-center justify-center gap-4">
+        Catálogo 2026 via WhatsApp <MessageCircle size={20} />
+      </a>
     </div>
   );
 }
 
-// --- Main App ---
-
 export default function App() {
   return (
-    <div className="antialiased selection:bg-luxury-gold selection:text-luxury-dark">
+    <div className="antialiased selection:bg-luxury-gold selection:text-black bg-white overflow-x-hidden">
       <Navbar />
       <main>
         <Hero />
-        <Benefits />
-        <ArtisanSection />
-        <SocialProof />
-        <Pricing />
-        <FAQ />
+        <CatalogSection />
+        <Testimonials />
+        <CommercialPolicy />
+        <HistorySection />
       </main>
       <Footer />
       <StickyCTA />
       
-      {/* Fixed WhatsApp Button */}
+      {/* Premium Floating WhatsApp Button */}
       <a 
-        href="https://wa.me/5511999999999" 
+        href={WHATSAPP_LINK} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-[70] bg-[#25D366] text-white p-5 rounded-full shadow-3xl hover:scale-110 transition-all flex items-center gap-3 group overflow-hidden"
+        className="fixed bottom-10 right-10 z-[70] bg-[#121212] text-white p-6 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center gap-4 group overflow-hidden border border-luxury-gold/50"
       >
-        <MessageCircle size={32} />
-        <span className="max-w-0 group-hover:max-w-xs transition-all duration-700 font-black uppercase text-[10px] tracking-[0.2em] whitespace-nowrap">Consultoria VIP</span>
+        <MessageCircle size={32} className="text-luxury-gold" fill="currentColor" />
+        <div className="max-w-0 group-hover:max-w-xs transition-all duration-700 overflow-hidden flex flex-col whitespace-nowrap">
+           <span className="font-bold uppercase text-[10px] tracking-widest text-luxury-gold">Catálogo 2026</span>
+           <span className="text-[8px] font-bold opacity-40 uppercase tracking-tighter italic">Suporte Especializado PJ</span>
+        </div>
       </a>
     </div>
   );

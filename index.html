@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarquis Samara Home | Travessas de Alto Padrão</title>
+    <title>Sarquis Samara | Obras de Arte para Servir</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -15,14 +15,20 @@
           extend: {
             fontFamily: {
               sans: ['Montserrat', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
             },
             colors: {
               luxury: {
-                gold: '#D4AF37',
-                dark: '#0A0A0A',
-                gray: '#F5F5F5',
-                accent: '#1C1C1C'
+                gold: '#C5A059',
+                goldLight: '#E5D1A4',
+                dark: '#050505',
+                accent: '#121212',
+                muted: '#666666'
               }
+            },
+            letterSpacing: {
+              'luxury': '0.3em',
+              'tight-luxury': '-0.02em'
             }
           }
         }
@@ -34,12 +40,35 @@
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
       }
-      .gradient-texture {
-        background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0a0a0a 100%);
+      .font-serif { font-family: 'Playfair Display', serif; }
+      
+      .gradient-hero {
+        background: linear-gradient(to right, #050505 0%, #121212 100%);
       }
-      .light-texture {
-        background-color: #ffffff;
-        background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+      
+      .gold-border {
+        border-image: linear-gradient(to right, #C5A059, #E5D1A4) 1;
+      }
+      
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .text-luxury-gradient {
+        background: linear-gradient(to right, #C5A059, #F1E4C1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Custom animations */
+      @keyframes slow-zoom {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.05); }
+      }
+      .animate-slow-zoom {
+        animation: slow-zoom 20s infinite alternate linear;
       }
     </style>
     <script type="importmap">
